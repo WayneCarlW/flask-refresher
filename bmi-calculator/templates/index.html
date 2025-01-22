@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+	<title>BMI-Home</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+</head>
+<body>
+	<div>
+		<p>Let's calculate your BMI</p>
+		<form class="pure-form" method="POST" action='/'>
+			Weight:<br>
+			<input type="text" name="weightbox">
+			<br>
+			Height(cm):<br>
+			<input type="text" name="heightbox">
+			<br>
+			<br>
+			<br>
+			<button class="pure-button pure-button-primary" type="submit" value="Calculate">Calculate</button>
+		</form>
+
+	</div>
+	<div>
+		{% if weight and height %}
+			<p>BMI: {{ (weight/(height **2))*10000 }}</p>
+		{% endif %}
+	</div>
+
+</body>
