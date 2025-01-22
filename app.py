@@ -1,17 +1,21 @@
-from flask import Flask,request
+from flask import Flask,request, render_template
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    return 'This is a good app'
+    name = ''
+    if request.method == 'POST' and 'namefield' in request.form:
+        name = request.form.get('namefield')
+    return render_template('index.html',
+                            name=name)
 
-@app.route('/method',methods=['GET', 'POST'])
-def method():
-    if request.method == 'POST':
-        return 'You have used a POST request'
-    else:
-        return 'You are using a GET request'
+#@app.route('/method',methods=['GET', 'POST'])
+#def method():
+#    if request.method == 'POST':
+#        return 'You have used a POST request'
+#    else:
+#        return 'You are using a GET request'
 
 app.run()
